@@ -5,7 +5,9 @@ import Cookies from "js-cookie";
 import { Navigate, Link } from "react-router-dom";
 
 const Login = () => {
-    
+
+  //SearchParam : 
+  // this function checks if the user is logged in or not
 useEffect(() => {
 
     supabase.auth.onAuthStateChange((event, session) => {
@@ -19,7 +21,7 @@ useEffect(() => {
 }, []);
 
 
-
+//This function handles the signin with google and its errors
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
@@ -50,6 +52,8 @@ useEffect(() => {
       alert("Wrong Email or Password!");
     }
   };
+
+
   return (
     <>
       <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300 overflow-y-hidden">

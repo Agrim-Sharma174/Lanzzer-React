@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import supabase from "./supabaseClient";
 import Cookies from "js-cookie";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 const Login = () => {
     
@@ -131,7 +131,10 @@ useEffect(() => {
                 href="#"
                 class="text-indigo-600 font-medium inline-flex space-x-1 items-center"
               >
-                <span>Register now </span>
+              <Link to={`/signup`}>
+              <span>Register now </span>
+              </Link>
+                
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -44,21 +44,21 @@ const InvoiceDisplay = () => {
       name: "send",
       icon: "ph:paper-plane-right",
       doit: () => {
-        navigate("/invoice-add");
+        navigate("/invoices/add");
       },
     },
     {
       name: "view",
       icon: "heroicons-outline:eye",
       doit: () => {
-        navigate("/invoice-preview");
+        navigate("/invoices/preview");
       },
     },
     {
       name: "edit",
       icon: "heroicons:pencil-square",
       doit: (id) => {
-        navigate("/invoice-edit");
+        navigate("/invoices/edit");
       },
     },
     {
@@ -280,7 +280,7 @@ const InvoiceDisplay = () => {
               className=" btn-dark font-normal btn-sm "
               iconClass="text-lg"
               onClick={() => {
-                navigate("/invoice-add");
+                navigate("/invoices/add");
               }}
             />
           </div>

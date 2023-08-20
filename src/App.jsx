@@ -23,7 +23,11 @@ function App() {
             //hello world this is parrl]
           }
         />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signup" element={
+          <Suspense fallback={<Loading />}>
+        <SignUp />
+        </Suspense>
+        } />
 
         <Route path="/*" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />

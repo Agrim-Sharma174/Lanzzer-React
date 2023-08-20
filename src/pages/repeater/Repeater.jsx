@@ -1,28 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "@/components/ui/Card";
 import Textinput from "@/components/ui/Textinput";
 import Icon from "@/components/ui/Icon";
 import Button from "@/components/ui/Button";
 import { useForm, useFieldArray } from "react-hook-form";
 
-const Repeater = () => {
+const Repeater = (props) => {
+  const [itemData, setItemData] = useState([]);
+
   const { register, control, handleSubmit, reset, trigger, setError } = useForm(
     {
-      defaultValues: {
-        test: [{ firstName: "Bill", lastName: "Luo", phone: "123456" }],
-      },
+      
     }
   );
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "test",
   });
-  const index = 1;
+
+  const handleFieldChange = (index, field, value) => {
+    const updatedData = [...itemData];
+    updatedData[index] = { ...updatedData[index], [field]: value };
+    setItemData(updatedData);
+    // console.log(itemData);
+  };
+
+  const handleFieldDelete = (index) => {
+    const updatedData = [...itemData];
+    updatedData.splice(index, 1);
+    setItemData(updatedData);
+    remove(index);
+  };
+
+  const onClick = () => {
+    props.sendData(itemData);
+  };
+
   return (
     <div>
       <div className="bg-slate-50 dark:bg-slate-800 -mx-6 px-6 py-6">
         <div className="mb-6 text-slate-600 dark:text-slate-300 text-xs font-medium uppercase">
-          Items info-500
+          Items info
         </div>
 
         <div>
@@ -33,38 +52,53 @@ const Repeater = () => {
                 key={index}
               >
                 <Textinput
-                  label="First Name"
+                  label="Item Name"
                   type="text"
                   id={`name${index}`}
                   placeholder="First Name"
                   register={register}
                   name={`test[${index}].firstName`}
+                  onChange={(e) => {
+                    handleFieldChange(index, "itemName", e.target.value);
+                    onClick();
+                  }}
                 />
 
                 <Textinput
-                  label="last Name"
-                  type="text"
+                  label="Description"
+                  type="textbox"
                   id={`name2${index}`}
                   placeholder="Last Name"
                   register={register}
                   name={`test[${index}].lastName`}
+                  onChange={(e) => {
+                    handleFieldChange(index, "description", e.target.value);
+                    onClick();
+                  }}
                 />
 
                 <div className="flex justify-between items-end space-x-5">
                   <div className="flex-1">
                     <Textinput
-                      label="Phone"
-                      type="text"
+                      label="Price"
+                      type="number"
                       id={`name3${index}`}
                       placeholder="Phone"
                       register={register}
                       name={`test[${index}].phone`}
+                      onChange={(e) => {
+                    handleFieldChange(index, "price", e.target.value);
+                    onClick();
+                  }}
                     />
                   </div>
                   {index > 0 && (
                     <div className="flex-none relative">
                       <button
-                        onClick={() => remove(index)}
+                        onClick={() => {
+                          handleFieldDelete(index);
+                          onClick();
+                        }}
                         type="button"
                         className="inline-flex items-center justify-center h-10 w-10 bg-danger-500 text-lg border rounded border-danger-500 text-white"
                       >
@@ -81,7 +115,10 @@ const Repeater = () => {
               text="Add new"
               icon="heroicons-outline:plus"
               className="text-slate-600 p-0 dark:text-slate-300"
-              onClick={() => append()}
+              onClick={() => {
+                append();
+                setItemData([...itemData, {}]);
+              }}
             />
           </div>
         </div>

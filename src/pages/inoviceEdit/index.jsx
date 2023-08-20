@@ -3,7 +3,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Textinput from "@/components/ui/Textinput";
 import Textarea from "@/components/ui/Textarea";
-import Repeater from "./Repeater";
+import Repeater from "../repeater/Repeater";
 import Flatpickr from "react-flatpickr";
 
 const InvoiceEditPage = () => {

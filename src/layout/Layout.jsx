@@ -44,13 +44,13 @@ const Layout = () => {
   const nodeRef = useRef(null);
 
 // Code to check that the user is logged in or not USERLOGINCHECK ?
-  useEffect(() => {
-    setAccessToken(Cookies.get("sb-access-token"));
-    if (!Cookies.get("sb-access-token")) {
-    navigate("/");
-    }
+  // useEffect(() => {
+  //   setAccessToken(Cookies.get("sb-access-token"));
+  //   if (!Cookies.get("sb-access-token")) {
+  //   navigate("/");
+  //   }
    
-  }, [accessToken]);
+  // }, [accessToken]);
 
 
   return (

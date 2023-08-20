@@ -9,7 +9,14 @@ const Login = () => {
   //SearchParam : 
   // this function checks if the user is logged in or not
 useEffect(() => {
-   
+  supabase.auth.onAuthStateChange((event, session) => {
+    if (event == "SIGNED_IN") {
+      console.log("signed in");
+      Cookies.set('sb-access-token', session.access_token)
+      Cookies.set('sb-refresh-token', session.refresh_token)
+      window.location.href = '/dashboard'
+    }
+  });
 }, []);
 
 
@@ -26,19 +33,19 @@ useEffect(() => {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: "https://lanzzer-react.vercel.app/dashboard",
+          redirectTo: "http://localhost:5174/dashboard",
 
         },
 
       });
-      supabase.auth.onAuthStateChange((event, session) => {
-        if (event == 'SIGNED_IN'){
-            console.log('signed in')
-            Cookies.set('sb-access-token', session.access_token)
-            Cookies.set('sb-refresh-token', session.refresh_token)
-            window.location.href = '/dashboard'
-        }
-      })
+      // supabase.auth.onAuthStateChange((event, session) => {
+      //   if (event == 'SIGNED_IN'){
+      //       console.log('signed in')
+      //       Cookies.set('sb-access-token', session.access_token)
+      //       Cookies.set('sb-refresh-token', session.refresh_token)
+      //       window.location.href = '/dashboard'
+      //   }
+      // })
     //   checkUser();
     //   Navigate("/dashboard");
 

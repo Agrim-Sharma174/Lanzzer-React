@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
-import TotalTable from "./TotalTable";
+import TotalTable from "../totalTable/TotalTable";
 import userDarkMode from "@/hooks/useDarkMode";
 
 // import images

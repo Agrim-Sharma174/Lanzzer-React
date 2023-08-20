@@ -13,7 +13,7 @@ import {
   useGlobalFilter,
   usePagination,
 } from "react-table";
-import GlobalFilter from "../table/react-tables/GlobalFilter";
+import GlobalFilter from "../globalFilter";
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -37,7 +37,7 @@ const IndeterminateCheckbox = React.forwardRef(
   }
 );
 
-const InvoicePage = () => {
+const InvoiceDisplay = () => {
   const navigate = useNavigate();
   const actions = [
     {
@@ -413,4 +413,4 @@ const InvoicePage = () => {
   );
 };
 
-export default InvoicePage;
+export default InvoiceDisplay;

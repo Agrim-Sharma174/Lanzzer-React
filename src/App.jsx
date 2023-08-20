@@ -8,6 +8,10 @@ const Trustpilot = lazy(() => import("./pages/trustpilot"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const SignUp = lazy(() => import("./pages/auth/SignUp"));
 const Error404 = lazy(() => import("./pages/404"));
+const InvoiceDisplay = lazy(() => import("./pages/invoiceDisplay"));
+const InvoiceAdd = lazy(()=> import("./pages/invoiceAdd"));
+const InvoiceEdit = lazy(()=> import("./pages/inoviceEdit"));
+const InvoicePreview = lazy(()=> import("./pages/invoicePreview"));
 
 import Layout from "./layout/Layout";
 function App() {
@@ -23,16 +27,50 @@ function App() {
             //hello world this is parrl]
           }
         />
-        <Route path="/signup" element={
-          <Suspense fallback={<Loading />}>
-        <SignUp />
-        </Suspense>
-        } />
+        <Route
+          path="/signup"
+          element={
+            <Suspense fallback={<Loading />}>
+              <SignUp />
+            </Suspense>
+          }
+        />
 
         <Route path="/*" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
 
-          <Route path="trustpilot" element={<Trustpilot />} />
+          <Route
+            path="invoices"
+            element={
+              <Suspense>
+                <InvoiceDisplay />
+              </Suspense>
+            }
+          />
+            <Route
+            path="invoices/add"
+            element={
+              <Suspense>
+                <InvoiceAdd />
+              </Suspense>
+            }
+          />
+            <Route
+            path="invoices/edit"
+            element={
+              <Suspense>
+                <InvoiceEdit />
+              </Suspense>
+            }
+          />
+              <Route
+            path="invoices/preview"
+            element={
+              <Suspense>
+                <InvoicePreview />
+              </Suspense>
+            }
+          />
           <Route path="*" element={<Navigate to="/404" />} />
         </Route>
 

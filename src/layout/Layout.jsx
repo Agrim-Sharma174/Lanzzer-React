@@ -43,7 +43,7 @@ const Layout = () => {
   const [mobileMenu, setMobileMenu] = useMobileMenu();
   const nodeRef = useRef(null);
 
-// Code to check that the user is logged in or not ?
+// Code to check that the user is logged in or not USERLOGINCHECK ?
   useEffect(() => {
     setAccessToken(Cookies.get("sb-access-token"));
     if (!Cookies.get("sb-access-token")) {
@@ -51,6 +51,7 @@ const Layout = () => {
     }
    
   }, [accessToken]);
+
 
   return (
     <>

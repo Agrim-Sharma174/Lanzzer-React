@@ -10,6 +10,9 @@ const SignUp = () => {
     supabase.auth.onAuthStateChange((event, session) => {
       if (event == "SIGNED_IN") {
         console.log("signed in");
+        Cookies.set('sb-access-token', session.access_token)
+        Cookies.set('sb-refresh-token', session.refresh_token)
+        window.location.href = '/dashboard'
       }
     });
   }, []);

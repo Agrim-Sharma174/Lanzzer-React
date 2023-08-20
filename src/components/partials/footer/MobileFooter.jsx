@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Icon from "@/components/ui/Icon";
+import Cookies from "js-cookie";
 
-import FooterAvatar from "@/assets/images/users/user-1.jpg";
+// import FooterAvatar from "@/assets/images/users/user-1.jpg";
 const MobileFooter = () => {
   return (
     <div className="bg-white bg-no-repeat custom-dropshadow footer-bg dark:bg-slate-700 flex justify-around items-center backdrop-filter backdrop-blur-[40px] fixed left-0 w-full z-[9999] bottom-0 py-[12px] px-4">
@@ -38,7 +39,7 @@ const MobileFooter = () => {
         {({ isActive }) => (
           <div className="h-[50px] w-[50px] rounded-full relative left-[0px] top-[0px] custom-dropshadow">
             <img
-              src={FooterAvatar}
+              src={Cookies.get("avatarURL")}
               alt=""
               className={` w-full h-full rounded-full
           ${

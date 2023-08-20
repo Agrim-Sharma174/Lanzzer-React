@@ -11,9 +11,9 @@ export const menuItems = [
   },
 
   {
-    title: "Profile",
-    icon: "heroicons-outline:user",
-    link: "trustpilot",
+    title: "Invoices",
+    icon: "heroicons-outline:document-text",
+    link: "invoices",
   }
 ];
 

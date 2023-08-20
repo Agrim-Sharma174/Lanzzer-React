@@ -19,6 +19,7 @@ import Loading from "@/components/Loading";
 import { motion, AnimatePresence } from "framer-motion";
 import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
+import supabase from "../pages/auth/supabaseClient";
 
 const Layout = () => {
   const { width, breakpoints } = useWidth();
@@ -52,6 +53,24 @@ const Layout = () => {
    
   // }, [accessToken]);
 
+async function getUser() {
+  try{
+    const { data, error } = await supabase.auth.getSession();
+    console.log(data);
+    Cookies.set("userEmail", data.session.user.email);
+    Cookies.set("userID", data.session.user.id);
+    Cookies.set("userName", data.session.user.user_metadata.full_name);
+    Cookies.set("avatarURL", data.session.user.user_metadata.avatar_url);
+    setAccessToken(data.access_token);
+  }
+  catch(error){
+    console.log(error);
+    navigate("/");
+  }
+}
+useEffect(() => {
+  getUser();
+}, [accessToken]);
 
   return (
     <>

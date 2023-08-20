@@ -1,0 +1,2 @@
+# Docs for function definitions and their locations.
+- To check if the user is loggged in or not, the logic has been implemented inside `Layout.jsx` file under `layout` folder, so that it will check for each and every route.

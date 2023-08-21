@@ -5,17 +5,18 @@ import Textinput from "@/components/ui/Textinput";
 import Textarea from "@/components/ui/Textarea";
 import Repeater from "../repeater/Repeater";
 import Flatpickr from "react-flatpickr";
-import { v5 as uuidv5 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import Cookies from "js-cookie";
 import supabase from "../auth/supabaseClient";
 import Swal from "sweetalert2";
 const InvoiceAddPage = () => {
   const [picker, setPicker] = useState(new Date());
   const [invoiceId, setInvoiceId] = useState(
-    uuidv5("https://example.com/name", uuidv5.URL)
+    uuidv4().slice(0, 8).toUpperCase()
   );
   const [itemData, setItemData] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
+ 
     itemData: {},
     creationDate: picker,
   });
@@ -44,13 +45,13 @@ const InvoiceAddPage = () => {
       const { data, error } = await supabase
       .from('invoices')
       .insert([
-        { userId: Cookies.get('userID'), invoiceData: invoiceData },
+        { userId: Cookies.get('userID'), invoiceData: invoiceData, invoice_id: invoiceId },
       ])
       .select()
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'Your work has been saved',
+        title: 'Your Invoice has been created.',
         showConfirmButton: false,
         timer: 1500
       })
@@ -136,8 +137,17 @@ const InvoiceAddPage = () => {
               Owner info
             </div>
 
-            <Textinput label="Name" type="text" placeholder="Add your name" />
-            <Textinput label="Phone" type="text" placeholder="Add your phone" />
+            <Textinput label="Name" type="text" placeholder="Add your name"
+             onChange={(e) => {
+                handleChange(e);
+                e.target.name = "ownerName";
+              }}
+             />
+            <Textinput label="Phone" type="text" placeholder="Add your phone
+            " onChange={(e) => {
+                handleChange(e);
+                e.target.name = "ownerPhone";
+              }} />
             <div className="lg:col-span-2 col-span-1">
               <Textinput
                 label="Ower's Email"
@@ -175,6 +185,10 @@ const InvoiceAddPage = () => {
               }}
         />
         <div className="ltr:text-right rtl:text-left space-x-3 rtl:space-x-reverse mt-4">
+        <Button text="Back" className="btn-dark" onClick={()=>{
+            window.history.back();
+            // console.log(invoiceData);
+          }} />
           <Button text="Save" className="btn-dark" onClick={()=>{
             invoiceData.itemData = itemData;
             createInvoice();

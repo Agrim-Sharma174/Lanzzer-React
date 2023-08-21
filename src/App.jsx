@@ -56,7 +56,7 @@ function App() {
             }
           />
             <Route
-            path="invoices/edit"
+            path="invoices/edit/:id"
             element={
               <Suspense>
                 <InvoiceEdit />
@@ -64,7 +64,7 @@ function App() {
             }
           />
               <Route
-            path="invoices/preview"
+            path="invoices/preview/:id"
             element={
               <Suspense>
                 <InvoicePreview />

@@ -1,10 +1,11 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { advancedTable } from "../../constant/table-data";
 import Card from "@/components/ui/Card";
 import Icon from "@/components/ui/Icon";
 import Dropdown from "@/components/ui/Dropdown";
 import Button from "@/components/ui/Button";
-
+import supabase from "../auth/supabaseClient";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import {
   useTable,
@@ -23,7 +24,7 @@ const IndeterminateCheckbox = React.forwardRef(
     React.useEffect(() => {
       resolvedRef.current.indeterminate = indeterminate;
     }, [resolvedRef, indeterminate]);
-
+  
     return (
       <>
         <input
@@ -39,6 +40,37 @@ const IndeterminateCheckbox = React.forwardRef(
 
 const InvoiceDisplay = () => {
   const navigate = useNavigate();
+  const [invoiceData, setInvoiceData] = useState();
+
+  async function getInvoice() {
+
+    try{
+      let { data: invoices, error } = await supabase
+      .from('invoices')
+      .select('*')
+      .range(0, 9)
+      .ilike('userId', `%${Cookies.get('userID')}%`)
+      // const invoices = supabase.channel('custom-filter-channel')
+      // .on(
+      //   'postgres_changes',
+      //   { event: '*', schema: 'public', table: 'invoices', filter: `userId=eq.${Cookies.get('userID')}` },
+      //   (payload) => {
+      //     console.log('Change received!', payload)
+      //   }
+      // )
+      // .subscribe()
+      setInvoiceData(invoices);
+      console.log(invoices)
+    }
+    catch(error){
+      console.log(error)
+    }
+
+  }
+  useEffect(() => {
+    getInvoice();
+  }, []);
+
   const actions = [
     {
       name: "send",
@@ -69,19 +101,20 @@ const InvoiceDisplay = () => {
       },
     },
   ];
+  
   const COLUMNS = [
     {
       Header: "Id",
       accessor: "id",
-      Cell: (row) => {
-        return <span>{row?.cell?.value}</span>;
+      Cell: (invoiceData) => {
+        return <span>{invoiceData?.userId}</span>;
       },
     },
     {
       Header: "Order",
       accessor: "order",
-      Cell: (row) => {
-        return <span>#{row?.cell?.value}</span>;
+      Cell: (r) => {
+        return <span>#{r?.cell?.value}</span>;
       },
     },
     {
@@ -216,22 +249,22 @@ const InvoiceDisplay = () => {
     useRowSelect,
 
     (hooks) => {
-      hooks.visibleColumns.push((columns) => [
-        {
-          id: "selection",
-          Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
-              <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
-          ),
-          Cell: ({ row }) => (
-            <div>
-              <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-            </div>
-          ),
-        },
-        ...columns,
-      ]);
+      // hooks.visibleColumns.push((columns) => [
+      //   {
+      //     id: "selection",
+      //     Header: ({ getToggleAllRowsSelectedProps }) => (
+      //       <div>
+      //         <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
+      //       </div>
+      //     ),
+      //     Cell: ({ row }) => (
+      //       <div>
+      //         <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+      //       </div>
+      //     ),
+      //   },
+      //   ...columns,
+      // ]);
     }
   );
   const {

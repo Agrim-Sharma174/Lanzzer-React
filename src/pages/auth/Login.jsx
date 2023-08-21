@@ -3,24 +3,23 @@ import { useState } from "react";
 import supabase from "./supabaseClient";
 import Cookies from "js-cookie";
 import { Navigate, Link } from "react-router-dom";
+// import { el } from "@fullcalendar/core/internal-common";
 
 const Login = () => {
-
-  //SearchParam : 
+  //SearchParam :
   // this function checks if the user is logged in or not
-useEffect(() => {
-  supabase.auth.onAuthStateChange((event, session) => {
-    if (event == "SIGNED_IN") {
-      console.log("signed in");
-      Cookies.set('sb-access-token', session.access_token)
-      Cookies.set('sb-refresh-token', session.refresh_token)
-      window.location.href = '/dashboard'
-    }
-  });
-}, []);
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (event == "SIGNED_IN") {
+        console.log("signed in");
+        Cookies.set("sb-access-token", session.access_token);
+        Cookies.set("sb-refresh-token", session.refresh_token);
+        window.location.href = "/dashboard";
+      }
+    });
+  }, []);
 
-
-//This function handles the signin with google and its errors
+  //This function handles the signin with google and its errors
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
@@ -33,21 +32,18 @@ useEffect(() => {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: "http://localhost:5174/dashboard",
-
+          redirectTo: "http://localhost:5173/dashboard",
         },
-
       });
       // supabase.auth.onAuthStateChange((event, session) => {
-      //   if (event == 'SIGNED_IN'){
-      //       console.log('signed in')
-      //       Cookies.set('sb-access-token', session.access_token)
-      //       Cookies.set('sb-refresh-token', session.refresh_token)
-      //       window.location.href = '/dashboard'
+      //   if (event == "SIGNED_IN") {
+      //     console.log("signed in");
+      //     Navigate("/dashboard");
+      //     window.location.href = "/dashboard";
+      //   } else {
+      //     console.log("not signed in");
       //   }
-      // })
-    //   checkUser();
-    //   Navigate("/dashboard");
+      // });
 
       // Cookies.set('name', 'fhff')
       // Alerting the user's role
@@ -57,7 +53,6 @@ useEffect(() => {
       alert("Wrong Email or Password!");
     }
   };
-
 
   return (
     <>
@@ -140,10 +135,10 @@ useEffect(() => {
                 href="#"
                 class="text-indigo-600 font-medium inline-flex space-x-1 items-center"
               >
-              <Link to={`/signup`}>
-              <span>Register now </span>
-              </Link>
-                
+                <Link to={`/signup`}>
+                  <span>Register now </span>
+                </Link>
+
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

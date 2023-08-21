@@ -8,12 +8,12 @@ import userDarkMode from "@/hooks/useDarkMode";
 import MainLogo from "@/assets/images/logo/logo.svg";
 import LogoWhite from "@/assets/images/logo/logo-white.svg";
 
-const InvoicePreviewPage = () => {
+const InvoicePreviewPage = (props) => {
   const printPage = () => {
     window.print();
   };
   const [isDark] = userDarkMode();
-
+console.log(props);
   return (
     <div>
       <div className="lg:flex justify-between flex-wrap items-center mb-6">

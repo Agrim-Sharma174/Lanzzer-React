@@ -8,16 +8,16 @@ import { Navigate, Link } from "react-router-dom";
 const Login = () => {
   //SearchParam :
   // this function checks if the user is logged in or not
-  useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event == "SIGNED_IN") {
-        console.log("signed in");
-        Cookies.set("sb-access-token", session.access_token);
-        Cookies.set("sb-refresh-token", session.refresh_token);
-        window.location.href = "/dashboard";
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   supabase.auth.onAuthStateChange((event, session) => {
+  //     if (event == "SIGNED_IN") {
+  //       console.log("signed in");
+  //       Cookies.set("sb-access-token", session.access_token);
+  //       Cookies.set("sb-refresh-token", session.refresh_token);
+  //       window.location.href = "/dashboard";
+  //     }
+  //   });
+  // }, []);
 
   //This function handles the signin with google and its errors
   const handleSignIn = async (e) => {
@@ -32,7 +32,7 @@ const Login = () => {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: "http://localhost:5174/dashboard",
+          redirectTo: "http://localhost:5173/dashboard",
         },
       });
       // supabase.auth.onAuthStateChange((event, session) => {

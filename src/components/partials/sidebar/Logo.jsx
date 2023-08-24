@@ -18,6 +18,8 @@ const SidebarLogo = ({ menuHover }) => {
   // skin
   const [skin] = useSkin();
   return (
+    
+     
     <div
       className={` logo-segment flex justify-between items-center bg-white dark:bg-slate-800 z-[9] py-6  px-4 
       ${menuHover ? "logo-hovered" : ""}
@@ -31,18 +33,18 @@ const SidebarLogo = ({ menuHover }) => {
     >
       <Link to="/dashboard">
         <div className="flex items-center space-x-4">
-          <div className="logo-icon">
+          {/* <div className="logo-icon">
             {!isDark && !isSemiDark ? (
               <img src={MobileLogo} alt="" />
             ) : (
               <img src={MobileLogoWhite} alt="" />
             )}
-          </div>
+          </div> */}
 
           {(!collapsed || menuHover) && (
             <div>
               <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                Leads Jiniee
+                Lanzzer
               </h1>
             </div>
           )}

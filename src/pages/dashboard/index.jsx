@@ -6,16 +6,11 @@ const Dashboard = () => {
 
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-if (supabase.auth.getUser()) {
-      setUser(supabase.auth.getUser());
-    }
-    console.log(user);
-  }, []);
+
 
   return (
     <div>
-      <Card title="Starter Kit">Your Dashboard</Card>
+      <Card title="Dashboard Coming Soon!!"></Card>
     </div>
   );
 };

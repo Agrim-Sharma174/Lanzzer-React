@@ -9,10 +9,13 @@ const Login = lazy(() => import("./pages/auth/Login"));
 const SignUp = lazy(() => import("./pages/auth/SignUp"));
 const Error404 = lazy(() => import("./pages/404"));
 const InvoiceDisplay = lazy(() => import("./pages/invoiceDisplay"));
-const InvoiceAdd = lazy(()=> import("./pages/invoiceAdd"));
-const InvoiceEdit = lazy(()=> import("./pages/inoviceEdit"));
-const InvoicePreview = lazy(()=> import("./pages/invoicePreview"));
-
+const InvoiceAdd = lazy(() => import("./pages/invoiceAdd"));
+const InvoiceEdit = lazy(() => import("./pages/inoviceEdit"));
+const InvoicePreview = lazy(() => import("./pages/invoicePreview"));
+const QuotationDisplay = lazy(() => import("./pages/quotationDisplay"));
+const QuotationAdd = lazy(() => import("./pages/quotationAdd"));
+const QuotationEdit = lazy(() => import("./pages/quotationEdit"));
+const QuotationPreview = lazy(() => import("./pages/quotationPreview"));
 import Layout from "./layout/Layout";
 function App() {
   return (
@@ -47,7 +50,7 @@ function App() {
               </Suspense>
             }
           />
-            <Route
+          <Route
             path="invoices/add"
             element={
               <Suspense>
@@ -55,7 +58,7 @@ function App() {
               </Suspense>
             }
           />
-            <Route
+          <Route
             path="invoices/edit/:id"
             element={
               <Suspense>
@@ -63,11 +66,44 @@ function App() {
               </Suspense>
             }
           />
-              <Route
+          <Route
             path="invoices/preview/:id"
             element={
               <Suspense>
                 <InvoicePreview />
+              </Suspense>
+            }
+          />
+          <Route
+            path="quotation"
+            element={
+              <Suspense>
+                <QuotationDisplay />
+              </Suspense>
+            }
+          />
+          <Route
+            path="quotation/add"
+            element={
+              <Suspense>
+                <QuotationAdd />
+              </Suspense>
+            }
+          />
+          <Route
+            path="quotation/edit/:id"
+            element={
+              <Suspense>
+                <QuotationEdit />
+              </Suspense>
+            }
+          />
+
+          <Route
+            path="quotation/preview/:id"
+            element={
+              <Suspense>
+                <QuotationPreview />
               </Suspense>
             }
           />

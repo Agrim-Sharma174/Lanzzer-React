@@ -14,6 +14,11 @@ export const menuItems = [
     title: "Invoices",
     icon: "heroicons-outline:document-text",
     link: "invoices",
+  },
+  {
+    title: "Quotation",
+    icon: "heroicons-outline:document-text",
+    link: "quotation",
   }
 ];
 

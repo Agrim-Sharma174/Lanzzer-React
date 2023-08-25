@@ -32,7 +32,7 @@ const Login = () => {
             access_type: "offline",
             prompt: "consent",
           },
-          redirectTo: "http://localhost:5173/dashboard",
+          redirectTo: "http://localhost:5174/dashboard",
         },
       });
       // supabase.auth.onAuthStateChange((event, session) => {

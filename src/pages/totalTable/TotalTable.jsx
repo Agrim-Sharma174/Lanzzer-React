@@ -1,31 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-const rows = [
-  {
-    item: "Headphone",
-    qty: 2,
-    price: "$600.25",
-    total: "$1200.50",
-  },
-  {
-    item: "Headphone",
-    qty: 2,
-    price: "$600.25",
-    total: "$1200.50",
-  },
-  {
-    item: "Headphone",
-    qty: 2,
-    price: "$600.25",
-    total: "$1200.50",
-  },
-  {
-    item: "Headphone",
-    qty: 2,
-    price: "$600.25",
-    total: "$1200.50",
-  },
-];
+
 
 const TotalTable = (props) => {
   const[rows,setRows]=useState(props.data);
@@ -39,18 +14,18 @@ useEffect(()=>{
         <tr>
           <th
             colSpan={2}
-            className="bg-slate-50 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left"
+            className="bg-slate-200 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left"
           >
             <span className="block px-6 py-5 font-semibold">Item</span>
           </th>
-          <th className="bg-slate-50 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left"
+          <th className="bg-slate-200 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left"
           colSpan={2}>
             <span className="block px-6 py-5 font-semibold">Description</span>
           </th>
-          <th className="bg-slate-50 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left">
+          <th className="bg-slate-200 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left">
             <span className="block px-6 py-5 font-semibold">PRICE</span>
           </th>
-          <th className="bg-slate-50 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left">
+          <th className="bg-slate-200 dark:bg-slate-700 dark:text-slate-300 text-xs  font-medium leading-4 uppercase text-slate-600 ltr:text-left ltr:last:text-right rtl:text-right rtl:last:text-left">
             <span className="block px-6 py-5 font-semibold">TOTAL</span>
           </th>
         </tr>
